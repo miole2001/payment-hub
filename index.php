@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -17,7 +16,7 @@
         <div class="form login">
           <span class="title">Login</span>
 
-          <form action="#">
+          <form action="#" method="post">
             <div class="input-field">
               <input type="text" placeholder="Enter your email" required />
               <i class="uil uil-envelope icon"></i>
@@ -54,7 +53,7 @@
         <div class="form signup">
           <span class="title">Registration</span>
 
-          <form action="#">
+          <form action="#" method="post">
             <div class="input-field">
               <input type="text" placeholder="Enter your name" required />
               <i class="uil uil-user"></i>
