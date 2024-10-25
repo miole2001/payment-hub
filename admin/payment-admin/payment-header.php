@@ -46,7 +46,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                                 Dashboard
                             </a>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="all-accounts.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 All Accounts
                             </a>

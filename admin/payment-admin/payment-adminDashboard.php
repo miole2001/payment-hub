@@ -2,6 +2,8 @@
     include('payment-header.php');
 ?>
 
+<!-- SELECT * FROM accounts WHERE user_type NOT IN ('payment admin', 'user', 'guest'); -->
+
 <main>
     <div class="container-fluid px-4">
         <h1 class="mt-4">Dashboard</h1>
@@ -120,7 +122,7 @@
                         <?php
 
                         // Fetch student records to display
-                        $sql = "SELECT * FROM accounts ORDER BY id DESC";
+                        $sql = "SELECT * FROM accounts WHERE user_type != 'payment admin' ORDER BY id DESC";
                         $result = $connection->query($sql);
 
                         if ($result->num_rows > 0) {
