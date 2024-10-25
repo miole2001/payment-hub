@@ -28,7 +28,7 @@
         //admin payment
         elseif ($row["user_type"] == "payment admin") {
             $_SESSION["username"] = $username;
-            header("location: admin/payment-adminDashboard.php");
+            header("location: admin/payment-admin/payment-adminDashboard.php");
         } 
 
         //admin boat

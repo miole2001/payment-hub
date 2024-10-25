@@ -1,5 +1,5 @@
 <?php     
-    include('dormitory-header.php');
+    include('payment-header.php');
 ?>
 
 <main>
@@ -33,6 +33,31 @@
                 </div>
             </div>
 
+            <!-- total boat accounts  -->
+            <div class="col-xl-3 col-md-5">
+                <div class="card bg-primary mb-4">
+                    <div class="card-body text-center text-white">
+                        <h2>Total Boat Accounts</h2>
+                        <?php
+                            $query = "SELECT * FROM accounts WHERE user_type = 'user boat'";
+                            $run_query = mysqli_query($connection, $query);
+
+                            if ($run_query) {
+                                $row = mysqli_num_rows($run_query);
+                                echo '<h3>' . $row . '</h3>';
+                            } else {
+                                echo '<h3>Error: Could not retrieve data.</h3>';
+                            }
+                        ?>
+                    </div>
+
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" href="#">View Details</a>
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Total Dormitory Payments -->
             <div class="col-xl-3 col-md-5">
                 <div class="card bg-primary mb-4">
@@ -47,11 +72,27 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Total boat Payments -->
+            <div class="col-xl-3 col-md-5">
+                <div class="card bg-primary mb-4">
+                    <div class="card-body text-center text-white">
+                        <h2>Total Boat Payments</h2>
+                        <h3>12</h3>
+                    </div>
+
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" href="#">View Details</a>
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <div class="card mt-5">
             <div class="card-header">
-                PAYMENT LOGS
+                Accounts
             </div>
             <div class="card-body">
                 <table id="datatablesSimple">
@@ -79,7 +120,7 @@
                         <?php
 
                         // Fetch student records to display
-                        $sql = "SELECT * FROM accounts WHERE user_type = 'user dormitory' ORDER BY id DESC";
+                        $sql = "SELECT * FROM accounts ORDER BY id DESC";
                         $result = $connection->query($sql);
 
                         if ($result->num_rows > 0) {
