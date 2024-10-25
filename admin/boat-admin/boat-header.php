@@ -48,33 +48,31 @@
                             </a>
                             <a class="nav-link" href="#">
                                 <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
-                                Student Accounts
+                                Accounts
                             </a>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-money-bill-alt"></i></div>
-                                Fees Per Year level
+                                Payments
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">First Year</a>
-                                    <a class="nav-link" href="#">Second Year</a>
-                                    <a class="nav-link" href="#">Third Year</a>
-                                    <a class="nav-link" href="#">Fourth Year</a>
+                                    <a class="nav-link" href="#">Pending</a>
+                                    <a class="nav-link" href="#">Approved</a>
                                 </nav>
                             </div>
 
                             <a class="nav-link" href="#">
                                 <div class="sb-nav-link-icon"><i class="fas fa-file-invoice-dollar"></i></div>
-                                Add Student
+                                My Logs
                             </a>
 
                             <a class="nav-link" href="#">
                                 <div class="sb-nav-link-icon"><i class="fas fa-file-invoice-dollar"></i></div>
-                                Payment Logs
+                                User Logs
                             </a>
 
-                            <a class="nav-link" href="../logout.php">
+                            <a class="nav-link" href="../../logout.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
                                 Logout
                             </a>

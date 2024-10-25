@@ -52,7 +52,7 @@
                             </a>
 
                             <!-- dormitory components -->
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="dormitory-accounts.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 Dormitory Accounts
                             </a>
@@ -63,14 +63,14 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">Pending</a>
-                                    <a class="nav-link" href="#">Approved</a>
+                                    <a class="nav-link" href="dormitory-pending.php">Pending</a>
+                                    <a class="nav-link" href="dormitory-approved.php">Approved</a>
                                 </nav>
                             </div>
 
 
                             <!-- boat reservation components -->
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="boat-accounts.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 Boat Reservation Accounts
                             </a>
@@ -81,8 +81,8 @@
                             </a>
                             <div class="collapse" id="Boat" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">Pending</a>
-                                    <a class="nav-link" href="#">Approved</a>
+                                    <a class="nav-link" href="boat-pending.php">Pending</a>
+                                    <a class="nav-link" href="boat-approved.php">Approved</a>
                                 </nav>
                             </div>
 
@@ -94,26 +94,30 @@
                             </a>
                             <div class="collapse" id="AdminLogs" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">Boat Reservation</a>
-                                    <a class="nav-link" href="#">Dormitory Reservation</a>
+                                    <a class="nav-link" href="boat-adminLogs.php">Boat Reservation</a>
+                                    <a class="nav-link" href="dormitory-adminLogs.php">Dormitory Reservation</a>
                                 </nav>
                             </div>
 
                             <!-- user logs -->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#UserLogs" aria-expanded="false" aria-controls="UserLogs">
                                 <div class="sb-nav-link-icon"><i class="fas fa-money-bill-alt"></i></div>
-                                Admin Logs
+                                User Logs
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="UserLogs" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">Boat Reservation</a>
-                                    <a class="nav-link" href="#">Dormitory Reservation</a>
+                                    <a class="nav-link" href="boat-userLogs.php">Boat Reservation</a>
+                                    <a class="nav-link" href="dormitory-userLogs.php">Dormitory Reservation</a>
                                 </nav>
                             </div>
 
+                            <a class="nav-link" href="my-logs.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                My Logs
+                            </a>
 
-                            <a class="nav-link" href="../logout.php">
+                            <a class="nav-link" href="../../logout.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
                                 Logout
                             </a>

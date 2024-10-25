@@ -20,26 +20,29 @@
 
         //user dormitory
         elseif ($row["user_type"] == "user dormitory"){
-          $_SESSION['id'] = $row['id'];
+            $_SESSION['id'] = $row['id'];
             $_SESSION["email"] = $email;
             header("location: user/dormitory-user/dormitory-userDashboard.php");
         }
         
         //admin payment
         elseif ($row["user_type"] == "payment admin") {
-            $_SESSION["username"] = $username;
+            $_SESSION['id'] = $row['id'];
+            $_SESSION["email"] = $email;
             header("location: admin/payment-admin/payment-adminDashboard.php");
         } 
 
         //admin boat
         elseif ($row["user_type"] == "boat admin") {
-          $_SESSION["username"] = $username;
+          $_SESSION['id'] = $row['id'];
+          $_SESSION["email"] = $email;
           header("location: admin/boat-admin/boat-adminDashboard.php");
       } 
 
       //admin dormitory
       elseif ($row["user_type"] == "dormitory admin") {
-        $_SESSION["username"] = $username;
+        $_SESSION['id'] = $row['id'];
+        $_SESSION["email"] = $email;
         header("location: admin/dormitory-admin/dormitory-adminDashboard.php");
       } 
         

@@ -57,24 +57,22 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">First Year</a>
-                                    <a class="nav-link" href="#">Second Year</a>
-                                    <a class="nav-link" href="#">Third Year</a>
-                                    <a class="nav-link" href="#">Fourth Year</a>
+                                    <a class="nav-link" href="#">Pending</a>
+                                    <a class="nav-link" href="#">Approved</a>
                                 </nav>
                             </div>
 
                             <a class="nav-link" href="#">
                                 <div class="sb-nav-link-icon"><i class="fas fa-file-invoice-dollar"></i></div>
-                                Add Student
+                                My Logs
                             </a>
 
                             <a class="nav-link" href="#">
                                 <div class="sb-nav-link-icon"><i class="fas fa-file-invoice-dollar"></i></div>
-                                Payment Logs
+                                User Logs
                             </a>
 
-                            <a class="nav-link" href="../logout.php">
+                            <a class="nav-link" href="../../logout.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
                                 Logout
                             </a>
