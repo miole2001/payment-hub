@@ -1,3 +1,55 @@
+<?php
+  include("./connection/connection.php");
+  session_start();
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      $email = $_POST["login-email"];
+      $password = $_POST["login-password"];
+
+      $sql = "SELECT * FROM accounts WHERE email = '$email' AND password = '$password'";
+      $result = mysqli_query($connection, $sql);
+
+      if (mysqli_num_rows($result) == 1) {
+        $row = mysqli_fetch_array($result);
+        
+        // user boat
+        if ($row["user_type"] == "user boat") {
+            $_SESSION['id'] = $row['id'];
+            $_SESSION["email"] = $email;
+            header("location: user/boat-user/boat-userDashboard.php");
+        } 
+
+        //user dormitory
+        elseif ($row["user_type"] == "user dormitory"){
+          $_SESSION['id'] = $row['id'];
+            $_SESSION["email"] = $email;
+            header("location: user/dormitory-user/dormitory-userDashboard.php");
+        }
+        
+        //admin payment
+        elseif ($row["user_type"] == "payment admin") {
+            $_SESSION["username"] = $username;
+            header("location: admin/payment-adminDashboard.php");
+        } 
+
+        //admin boat
+        elseif ($row["user_type"] == "boat admin") {
+          $_SESSION["username"] = $username;
+          header("location: admin/boat-admin/boat-adminDashboard.php");
+      } 
+
+      //admin dormitory
+      elseif ($row["user_type"] == "dormitory admin") {
+        $_SESSION["username"] = $username;
+        header("location: admin/dormitory-admin/dormitory-adminDashboard.php");
+      } 
+        
+        else {
+            echo "invalid";
+        }
+    }
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,7 +60,7 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
     <!-- ===== CSS ===== -->
     <link rel="stylesheet" href="./css/login.css" />
-    <title>Login & Registration Form</title>
+    <title>Login | Payment Hub</title>
   </head>
   <body>
     <div class="container">
@@ -18,76 +70,24 @@
 
           <form action="#" method="post">
             <div class="input-field">
-              <input type="text" placeholder="Enter your email" required />
+              <input type="text" placeholder="Enter your email" name="login-email" required />
               <i class="uil uil-envelope icon"></i>
             </div>
             <div class="input-field">
-              <input type="password" class="password" placeholder="Enter your password" required />
+              <input type="password" class="password" placeholder="Enter your password" name="login-password" required />
               <i class="uil uil-lock icon"></i>
               <i class="uil uil-eye-slash showHidePw"></i>
             </div>
 
-            <div class="checkbox-text">
-              <div class="checkbox-content">
-                <input type="checkbox" id="logCheck" />
-                <label for="logCheck" class="text">Remember me</label>
-              </div>
-
-              <a href="#" class="text">Forgot password?</a>
-            </div>
-
             <div class="input-field button">
-              <input type="button" value="Login" />
+              <input type="submit" value="Login" />
             </div>
           </form>
 
           <div class="login-signup">
-            <span class="text"
-              >Not a member?
-              <a href="#" class="text signup-link">Signup Now</a>
-            </span>
-          </div>
-        </div>
-
-        <!-- Registration Form -->
-        <div class="form signup">
-          <span class="title">Registration</span>
-
-          <form action="#" method="post">
-            <div class="input-field">
-              <input type="text" placeholder="Enter your name" required />
-              <i class="uil uil-user"></i>
-            </div>
-            <div class="input-field">
-              <input type="text" placeholder="Enter your email" required />
-              <i class="uil uil-envelope icon"></i>
-            </div>
-            <div class="input-field">
-              <input type="password" class="password" placeholder="Create a password" required />
-              <i class="uil uil-lock icon"></i>
-            </div>
-            <div class="input-field">
-              <input type="password" class="password" placeholder="Confirm a password" required />
-              <i class="uil uil-lock icon"></i>
-              <i class="uil uil-eye-slash showHidePw"></i>
-            </div>
-
-            <div class="checkbox-text">
-              <div class="checkbox-content">
-                <input type="checkbox" id="termCon" />
-                <label for="termCon" class="text">I accepted all terms and conditions</label>
-              </div>
-            </div>
-
-            <div class="input-field button">
-              <input type="button" value="Signup" />
-            </div>
-          </form>
-
-          <div class="login-signup">
-            <span class="text"
-              >Already a member?
-              <a href="#" class="text login-link">Login Now</a>
+            <span class="text">
+              Not a member?
+              <a href="register.php" class="text">Signup Now</a>
             </span>
           </div>
         </div>
