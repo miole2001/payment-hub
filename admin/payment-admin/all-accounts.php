@@ -45,7 +45,7 @@ include('payment-header.php');
                         if ($result) {
                             echo "<script>alert('Delete Successful!'); window.location.href = 'all-accounts.php';</script>";
                         } else {
-                            echo "<script>alert('Delete Unsuccessful. There was an error deleting the student.'); window.location.href = 'all-accounts.php';</script>";
+                            echo "<script>alert('Delete Unsuccessful. There was an error deleting the account.'); window.location.href = 'all-accounts.php';</script>";
                         }
                         $stmt->close();
                     }
@@ -59,7 +59,7 @@ include('payment-header.php');
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>
                                             <td>{$count}</td>
-                                            <td>{$row['image']}</td>
+                                            <td><img src='../../images/" . $row['image'] . "' alt='User Image' class='user-image' style='width: 100px; height: auto;'></td>
                                             <td>{$row['name']}</td>
                                             <td>{$row['email']}</td>
                                             <td>{$row['user_type']}</td>
