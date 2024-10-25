@@ -74,7 +74,7 @@ include('payment-header.php');
                             $count++;
                         }
                     } else {
-                        echo "<tr><td colspan='6' class='text-center'>No accounts found.</td></tr>";
+                        echo "<tr><td colspan='8' class='text-center'>No accounts found.</td></tr>";
                     }
 
                     $connection->close();
