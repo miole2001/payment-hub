@@ -65,7 +65,7 @@ include('payment-header.php');
                                             <td>{$row['user_type']}</td>
                                             <td>{$row['date_registered']}</td>
                                             <td>
-                                                <button class='btn btn-warning' onclick='openEditModal({$row['id']}, \"{$row['name']}\", \"{$row['email']}\", \"{$row['user_type']})'>Edit</button>
+                                                <button class='btn btn-warning'>Edit</button>
                                                 <button class='btn btn-danger' onclick='confirmDelete(" . $row['id'] . ")'>Delete</button>
                                             </td> 
                                         </tr>";
