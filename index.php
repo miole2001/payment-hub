@@ -15,14 +15,14 @@
         if ($row["user_type"] == "user boat") {
             $_SESSION['id'] = $row['id'];
             $_SESSION["email"] = $email;
-            header("location: user/boat-user/boat-userDashboard.php");
+            header("location: user/boat-user/payment-approved.php");
         } 
 
         //user dormitory
         elseif ($row["user_type"] == "user dormitory"){
             $_SESSION['id'] = $row['id'];
             $_SESSION["email"] = $email;
-            header("location: user/dormitory-user/dormitory-userDashboard.php");
+            header("location: user/dormitory-user/payment-approved.php");
         }
         
         //admin payment

@@ -31,7 +31,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="admin-dashboard.php">Payment Hub</a>
+            <a class="navbar-brand ps-3" href="payment-approved.php">Payment Hub</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         </nav>
@@ -40,15 +40,23 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">core</div>
-                            <a class="nav-link" href="#">
+
+                            <div class="sb-sidenav-menu-heading">Payments</div>
+
+                            <a class="nav-link" href="payment-pending.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-money-bill-wave"></i></div>
-                                My Bills
+                                Pending Payments
                             </a>
-                            <div class="sb-sidenav-menu-heading">Interface</div>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="payment-approved.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-money-bill-wave"></i></div>
+                                Approved Payments
+                            </a>
+
+                            <div class="sb-sidenav-menu-heading">Logs</div>
+
+                            <a class="nav-link" href="my-logs.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-circle"></i></div>
-                                My Profile
+                                Logs
                             </a>
                             <a class="nav-link" href="../../logout.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
