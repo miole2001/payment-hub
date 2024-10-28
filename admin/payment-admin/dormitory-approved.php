@@ -19,7 +19,7 @@ include('payment-header.php');
                         <th>Price</th>
                         <th>Item</th>
                         <th>status</th>
-                        <th>Date Registered</th>
+                        <th>Date</th>
                         <th>Action(s)</th>
                     </tr>
                 </thead>
@@ -31,7 +31,7 @@ include('payment-header.php');
                         <th>Price</th>
                         <th>Item</th>
                         <th>status</th>
-                        <th>Date Registered</th>
+                        <th>Date</th>
                         <th>Action(s)</th>
                     </tr>
                 </tfoot>
@@ -67,7 +67,6 @@ include('payment-header.php');
                                             <td>{$row['status']}</td>
                                             <td>{$row['timestamp']}</td>
                                             <td>
-                                                <button class='btn btn-warning'>Edit</button>
                                                 <button class='btn btn-danger' onclick='confirmDelete(" . $row['id'] . ")'>Delete</button>
                                             </td> 
                                         </tr>";

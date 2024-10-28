@@ -59,7 +59,6 @@ include('payment-header.php');
                                             <td>{$row['activity_type']}</td>
                                             <td>{$row['timestamp']}</td>
                                             <td>
-                                                <button class='btn btn-warning'>Edit</button>
                                                 <button class='btn btn-danger' onclick='confirmDelete(" . $row['id'] . ")'>Delete</button>
                                             </td> 
                                         </tr>";

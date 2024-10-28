@@ -1,33 +1,33 @@
-<?php
-include('payment-header.php');
+<?php     
+    include('dormitory-header.php');
 
 
-// Handle the update data
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $id = $_POST['id'];
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $type = $_POST['user_type'];
+    // Handle the update data
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $id = $_POST['id'];
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $type = $_POST['user_type'];
 
-    // Prepare the SQL statement
-    $stmt = $connection->prepare("UPDATE accounts SET name = ?, email = ?, user_type = ? WHERE id = ?");
-    $stmt->bind_param("sssi", $name, $email, $type, $id);
+        // Prepare the SQL statement
+        $stmt = $connection->prepare("UPDATE accounts SET name = ?, email = ?, user_type = ? WHERE id = ?");
+        $stmt->bind_param("sssi", $name, $email, $type, $id);
 
-    // Execute the statement and check for errors
-    if ($stmt->execute()) {
-        echo "<script>alert('Update Successful!'); window.location.href = 'dormitory-accounts.php';</script>";
-    } else {
-        echo "<script>alert('Update Unsuccessful. Error: " . $stmt->error . "'); window.location.href = 'dormitory-accounts.php';</script>";
+        // Execute the statement and check for errors
+        if ($stmt->execute()) {
+            echo "<script>alert('Update Successful!'); window.location.href = 'dormitory-accounts.php';</script>";
+        } else {
+            echo "<script>alert('Update Unsuccessful. Error: " . $stmt->error . "'); window.location.href = 'dormitory-accounts.php';</script>";
+        }
+
+        $stmt->close();
     }
-
-    $stmt->close();
-}
 
 ?>
 
 <main>
     <div class="d-flex justify-content-center mt-4">
-        <h3>List of Dormitory Accounts</h3>
+        <h3>List of All Accounts</h3>
     </div>
     <div class="card mt-5">
         <div class="card-header">
@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $stmt->close();
                     }
 
-                    // Fetch student records to display
+                    // Fetch account records to display
                     $sql = "SELECT * FROM accounts WHERE user_type = 'user dormitory' ORDER BY id DESC";
                     $result = $connection->query($sql);
 
@@ -81,20 +81,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $count = 1;
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>
-                                            <td>{$count}</td>
-                                            <td><img src='../../images/" . $row['image'] . "' alt='User Image' class='user-image' style='width: 100px; height: auto;'></td>
-                                            <td>{$row['name']}</td>
-                                            <td>{$row['email']}</td>
-                                            <td>{$row['user_type']}</td>
-                                            <td>{$row['date_registered']}</td>
-                                            <td>
-                                                <button class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#editModal' 
-                                                    onclick='editAccount({$row['id']}, \"" . addslashes($row['name']) . "\", \"" . addslashes($row['email']) . "\", \"" . addslashes($row['user_type']) . "\")'>
-                                                    Edit
-                                                </button>
-                                                <button class='btn btn-danger' onclick='confirmDelete(" . $row['id'] . ")'>Delete</button>
-                                            </td> 
-                                        </tr>";
+                                <td>{$count}</td>
+                                <td><img src='../../images/" . $row['image'] . "' alt='User Image' class='user-image' style='width: 100px; height: auto;'></td>
+                                <td>{$row['name']}</td>
+                                <td>{$row['email']}</td>
+                                <td>{$row['user_type']}</td>
+                                <td>{$row['date_registered']}</td>
+                                <td>
+                                    <button class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#editModal' 
+                                        onclick='editAccount({$row['id']}, \"" . addslashes($row['name']) . "\", \"" . addslashes($row['email']) . "\", \"" . addslashes($row['user_type']) . "\")'>Edit</button>
+                                    <button class='btn btn-danger' onclick='confirmDelete(" . $row['id'] . ")'>Delete</button>
+                                </td> 
+                            </tr>";
                             $count++;
                         }
                     } else {
@@ -104,8 +102,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $connection->close();
                     ?>
                 </tbody>
-
-
             </table>
         </div>
     </div>
@@ -161,6 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         accountTypeSelect.value = accountType; // Set the value to match the option
     }
 </script>
+
+
 <?php include("../../components/footer.php"); ?>
 <?php include("../../components/scripts.php"); ?>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

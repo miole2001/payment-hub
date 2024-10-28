@@ -1,5 +1,28 @@
 <?php
 include('payment-header.php');
+
+
+// Handle the update data
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $type = $_POST['user_type'];
+
+    // Prepare the SQL statement
+    $stmt = $connection->prepare("UPDATE accounts SET name = ?, email = ?, user_type = ? WHERE id = ?");
+    $stmt->bind_param("sssi", $name, $email, $type, $id);
+
+    // Execute the statement and check for errors
+    if ($stmt->execute()) {
+        echo "<script>alert('Update Successful!'); window.location.href = 'boat-accounts.php';</script>";
+    } else {
+        echo "<script>alert('Update Unsuccessful. Error: " . $stmt->error . "'); window.location.href = 'boat-accounts.php';</script>";
+    }
+
+    $stmt->close();
+}
+
 ?>
 
 <main>
@@ -65,7 +88,8 @@ include('payment-header.php');
                                             <td>{$row['user_type']}</td>
                                             <td>{$row['date_registered']}</td>
                                             <td>
-                                                <button class='btn btn-warning' onclick='openEditModal({$row['id']}, \"{$row['name']}\", \"{$row['email']}\", \"{$row['user_type']})'>Edit</button>
+                                                <button class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#editModal' 
+                                        onclick='editAccount({$row['id']}, \"" . addslashes($row['name']) . "\", \"" . addslashes($row['email']) . "\", \"" . addslashes($row['user_type']) . "\")'>Edit</button>
                                                 <button class='btn btn-danger' onclick='confirmDelete(" . $row['id'] . ")'>Delete</button>
                                             </td> 
                                         </tr>";
@@ -84,11 +108,55 @@ include('payment-header.php');
         </div>
     </div>
 </main>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Edit Account</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm" method="POST" action="boat-accounts.php">
+                    <input type="hidden" name="id" id="accountId">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" name="name" id="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" id="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="accountType" class="form-label">Account Type</label>
+                        <select class="form-select" name="user_type" id="accountType" required>
+                            <option value="user dormitory">Dormitory</option>
+                            <option value="user boat">Boat</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     function confirmDelete(id) {
         if (confirm('Are you sure you want to delete this entry?')) {
             window.location.href = 'boat-accounts.php?delete_id=' + id;
         }
+    }
+
+    function editAccount(id, name, email, accountType) {
+        document.getElementById('accountId').value = id;
+        document.getElementById('name').value = name;
+        document.getElementById('email').value = email;
+
+        // Set the selected account type
+        const accountTypeSelect = document.getElementById('accountType');
+        accountTypeSelect.value = accountType; // Set the value to match the option
     }
 </script>
 <?php include("../../components/footer.php"); ?>

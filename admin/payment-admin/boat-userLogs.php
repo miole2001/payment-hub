@@ -47,7 +47,7 @@ include('payment-header.php');
                     }
 
                     // Fetch student records to display
-                    $sql = "SELECT * FROM accounts WHERE user_type = 'user boat' ORDER BY id DESC";
+                    $sql = "SELECT * FROM logs WHERE system_type = 'user boat' ORDER BY id DESC";
                     $result = $connection->query($sql);
 
                     if ($result->num_rows > 0) {
@@ -59,7 +59,6 @@ include('payment-header.php');
                                             <td>{$row['activity_type']}</td>
                                             <td>{$row['timestamp']}</td>
                                             <td>
-                                                <button class='btn btn-warning'>Edit</button>
                                                 <button class='btn btn-danger' onclick='confirmDelete(" . $row['id'] . ")'>Delete</button>
                                             </td> 
                                         </tr>";

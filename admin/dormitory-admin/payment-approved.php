@@ -1,9 +1,9 @@
 <?php
-include('payment-header.php');
+include('dormitory-header.php');
 ?>
 <main>
     <div class="d-flex justify-content-center mt-4">
-        <h3>Boat Reservation Approved Payments</h3>
+        <h3>Dormitory Reservation Approved Payments</h3>
     </div>
     <div class="card mt-5">
         <div class="card-header">
@@ -19,7 +19,7 @@ include('payment-header.php');
                         <th>Price</th>
                         <th>Item</th>
                         <th>status</th>
-                        <th>Date Registered</th>
+                        <th>Date</th>
                         <th>Action(s)</th>
                     </tr>
                 </thead>
@@ -31,7 +31,7 @@ include('payment-header.php');
                         <th>Price</th>
                         <th>Item</th>
                         <th>status</th>
-                        <th>Date Registered</th>
+                        <th>Date</th>
                         <th>Action(s)</th>
                     </tr>
                 </tfoot>
@@ -44,15 +44,15 @@ include('payment-header.php');
                         $result = $stmt->execute();
 
                         if ($result) {
-                            echo "<script>alert('Delete Successful!'); window.location.href = 'boat-approved.php';</script>";
+                            echo "<script>alert('Delete Successful!'); window.location.href = 'payment-approved.php';</script>";
                         } else {
-                            echo "<script>alert('Delete Unsuccessful. There was an error deleting the account.'); window.location.href = 'boat-approved.php';</script>";
+                            echo "<script>alert('Delete Unsuccessful. There was an error deleting the account.'); window.location.href = 'payment-approved.php';</script>";
                         }
                         $stmt->close();
                     }
 
                     // Fetch student records to display
-                    $sql = "SELECT * FROM payments WHERE system_type = 'boat' AND status = 'approved' ORDER BY id DESC";
+                    $sql = "SELECT * FROM payments WHERE system_type = 'dormitory' AND status = 'approved' ORDER BY id DESC";
                     $result = $connection->query($sql);
 
                     if ($result->num_rows > 0) {
@@ -88,7 +88,7 @@ include('payment-header.php');
 <script>
     function confirmDelete(id) {
         if (confirm('Are you sure you want to delete this entry?')) {
-            window.location.href = 'boat-approved.php?delete_id=' + id;
+            window.location.href = 'payment-approved.php?delete_id=' + id;
         }
     }
 </script>

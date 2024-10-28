@@ -1,5 +1,5 @@
 <?php
-include('payment-header.php');
+include('boat-header.php');
 ?>
 <main>
     <div class="d-flex justify-content-center mt-4">
@@ -44,9 +44,9 @@ include('payment-header.php');
                         $result = $stmt->execute();
 
                         if ($result) {
-                            echo "<script>alert('Delete Successful!'); window.location.href = 'boat-approved.php';</script>";
+                            echo "<script>alert('Delete Successful!'); window.location.href = 'payment-approved.php';</script>";
                         } else {
-                            echo "<script>alert('Delete Unsuccessful. There was an error deleting the account.'); window.location.href = 'boat-approved.php';</script>";
+                            echo "<script>alert('Delete Unsuccessful. There was an error deleting the account.'); window.location.href = 'payment-approved.php';</script>";
                         }
                         $stmt->close();
                     }
@@ -88,7 +88,7 @@ include('payment-header.php');
 <script>
     function confirmDelete(id) {
         if (confirm('Are you sure you want to delete this entry?')) {
-            window.location.href = 'boat-approved.php?delete_id=' + id;
+            window.location.href = 'payment-approved.php?delete_id=' + id;
         }
     }
 </script>

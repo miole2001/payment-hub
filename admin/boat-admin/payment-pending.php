@@ -1,5 +1,5 @@
 <?php
-include('payment-header.php');
+include('boat-header.php');
 
 // Handle the approval update
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
@@ -11,9 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
 
     // Execute the statement and check for errors
     if ($stmt->execute()) {
-        echo "<script>alert('Payment Approved!'); window.location.href = 'dormitory-pending.php';</script>";
+        echo "<script>alert('Payment Approved!'); window.location.href = 'payment-pending.php';</script>";
     } else {
-        echo "<script>alert('Approval Unsuccessful. Error: " . $stmt->error . "'); window.location.href = 'dormitory-pending.php';</script>";
+        echo "<script>alert('Approval Unsuccessful. Error: " . $stmt->error . "'); window.location.href = 'payment-pending.php';</script>";
     }
 
     $stmt->close();
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
 
 <main>
     <div class="d-flex justify-content-center mt-4">
-        <h3>Dormitory Reservation Pending Payments</h3>
+        <h3>Boat Reservation Pending Payments</h3>
     </div>
     <div class="card mt-5">
         <div class="card-header">
@@ -63,15 +63,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
                         $result = $stmt->execute();
 
                         if ($result) {
-                            echo "<script>alert('Delete Successful!'); window.location.href = 'dormitory-pending.php';</script>";
+                            echo "<script>alert('Delete Successful!'); window.location.href = 'payment-pending.php';</script>";
                         } else {
-                            echo "<script>alert('Delete Unsuccessful. There was an error deleting the payment.'); window.location.href = 'dormitory-pending.php';</script>";
+                            echo "<script>alert('Delete Unsuccessful. There was an error deleting the payment.'); window.location.href = 'payment-pending.php';</script>";
                         }
                         $stmt->close();
                     }
 
                     // Fetch pending payments to display
-                    $sql = "SELECT * FROM payments WHERE system_type = 'dormitory' AND status = 'pending' ORDER BY id DESC";
+                    $sql = "SELECT * FROM payments WHERE system_type = 'boat' AND status = 'pending' ORDER BY id DESC";
                     $result = $connection->query($sql);
 
                     if ($result->num_rows > 0) {
@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
                 <p>Are you sure you want to approve this payment?</p>
             </div>
             <div class="modal-footer">
-                <form method="POST" action="dormitory-pending.php">
+                <form method="POST" action="payment-pending.php">
                     <input type="hidden" name="approve_id" id="approveId">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-primary">Approve</button>
@@ -130,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
 <script>
     function confirmDelete(id) {
         if (confirm('Are you sure you want to delete this entry?')) {
-            window.location.href = 'dormitory-pending.php?delete_id=' + id;
+            window.location.href = 'payment-pending.php?delete_id=' + id;
         }
     }
 

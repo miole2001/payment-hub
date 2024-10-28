@@ -11,9 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
 
     // Execute the statement and check for errors
     if ($stmt->execute()) {
-        echo "<script>alert('Payment Approved!'); window.location.href = 'dormitory-pending.php';</script>";
+        echo "<script>alert('Payment Approved!'); window.location.href = 'payment-pending.php';</script>";
     } else {
-        echo "<script>alert('Approval Unsuccessful. Error: " . $stmt->error . "'); window.location.href = 'dormitory-pending.php';</script>";
+        echo "<script>alert('Approval Unsuccessful. Error: " . $stmt->error . "'); window.location.href = 'payment-pending.php';</script>";
     }
 
     $stmt->close();
@@ -63,9 +63,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
                         $result = $stmt->execute();
 
                         if ($result) {
-                            echo "<script>alert('Delete Successful!'); window.location.href = 'dormitory-pending.php';</script>";
+                            echo "<script>alert('Delete Successful!'); window.location.href = 'payment-pending.php';</script>";
                         } else {
-                            echo "<script>alert('Delete Unsuccessful. There was an error deleting the payment.'); window.location.href = 'dormitory-pending.php';</script>";
+                            echo "<script>alert('Delete Unsuccessful. There was an error deleting the payment.'); window.location.href = 'payment-pending.php';</script>";
                         }
                         $stmt->close();
                     }
@@ -130,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
 <script>
     function confirmDelete(id) {
         if (confirm('Are you sure you want to delete this entry?')) {
-            window.location.href = 'dormitory-pending.php?delete_id=' + id;
+            window.location.href = 'payment-pending.php?delete_id=' + id;
         }
     }
 

@@ -26,7 +26,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <title>Payment Hub | Admin</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="../css/dashboard.css" rel="stylesheet" />
+        <link href="../../css/dashboard.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -42,11 +42,11 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="boat-adminDashboard.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                                 Dashboard
                             </a>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="boat-accounts.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 Accounts
                             </a>
@@ -57,17 +57,17 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">Pending</a>
-                                    <a class="nav-link" href="#">Approved</a>
+                                    <a class="nav-link" href="payment-pending.php">Pending</a>
+                                    <a class="nav-link" href="payment-approved.php">Approved</a>
                                 </nav>
                             </div>
 
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="my-logs.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-file-invoice-dollar"></i></div>
                                 My Logs
                             </a>
 
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="boat-userLogs.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-file-invoice-dollar"></i></div>
                                 User Logs
                             </a>
