@@ -72,8 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         }
                         $stmt->close();
                     }
-
-                    // Fetch student records to display
                     $sql = "SELECT * FROM accounts WHERE user_type = 'user dormitory' ORDER BY id DESC";
                     $result = $connection->query($sql);
 

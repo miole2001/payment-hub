@@ -120,8 +120,6 @@
                     </tfoot>
                     <tbody>
                         <?php
-
-                        // Fetch student records to display
                         $sql = "SELECT * FROM accounts WHERE user_type != 'payment admin' ORDER BY id DESC";
                         $result = $connection->query($sql);
 

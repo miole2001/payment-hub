@@ -78,8 +78,6 @@
                     </tfoot>
                     <tbody>
                         <?php
-
-                        // Fetch student records to display
                         $sql = "SELECT * FROM accounts WHERE user_type = 'user boat' ORDER BY id DESC";
                         $result = $connection->query($sql);
 

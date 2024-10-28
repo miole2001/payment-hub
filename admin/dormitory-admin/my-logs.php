@@ -45,8 +45,6 @@ include('dormitory-header.php');
                         }
                         $stmt->close();
                     }
-
-                    // Fetch student records to display
                     $sql = "SELECT * FROM logs WHERE system_type = 'dormitory admin' ORDER BY id DESC";
                     $result = $connection->query($sql);
 

@@ -45,8 +45,6 @@ include('boat-header.php');
                         }
                         $stmt->close();
                     }
-
-                    // Fetch student records to display
                     $sql = "SELECT * FROM logs WHERE system_type = 'user boat' ORDER BY id DESC";
                     $result = $connection->query($sql);
 

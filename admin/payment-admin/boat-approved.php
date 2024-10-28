@@ -50,8 +50,6 @@ include('payment-header.php');
                         }
                         $stmt->close();
                     }
-
-                    // Fetch student records to display
                     $sql = "SELECT * FROM payments WHERE system_type = 'boat' AND status = 'approved' ORDER BY id DESC";
                     $result = $connection->query($sql);
 
