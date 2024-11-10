@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
     $approve_id = $_POST['approve_id'];
 
     // Prepare the SQL statement to update the status
-    $stmt = $connection->prepare("UPDATE payments SET status = 'approved' WHERE id = ?");
+    $stmt = $connection->prepare("UPDATE payment_list SET status = 'approved' WHERE id = ?");
     $stmt->bind_param("i", $approve_id);
 
     // Execute the statement and check for errors
@@ -33,24 +33,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Price</th>
-                        <th>Item</th>
+                        <th>Account ID</th>
+                        <th>Month</th>
+                        <th>Amount</th>
                         <th>Status</th>
-                        <th>Date</th>
+                        <th>Date Payment</th>
+                        <th>Date Updated</th>
                         <th>Action(s)</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Price</th>
-                        <th>Item</th>
+                        <th>Account ID</th>
+                        <th>Month</th>
+                        <th>Amount</th>
                         <th>Status</th>
-                        <th>Date</th>
+                        <th>Date Payment</th>
+                        <th>Date Updated</th>
                         <th>Action(s)</th>
                     </tr>
                 </tfoot>
@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
                     <?php
                     if (isset($_GET['delete_id'])) {
                         $delete_id = $_GET['delete_id'];
-                        $stmt = $connection->prepare("DELETE FROM payments WHERE id = ?");
+                        $stmt = $connection->prepare("DELETE FROM payment_list WHERE id = ?");
                         $stmt->bind_param("i", $delete_id);
                         $result = $stmt->execute();
 
@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
                     }
 
                     // Fetch pending payments to display
-                    $sql = "SELECT * FROM payments WHERE system_type = 'dormitory' AND status = 'pending' ORDER BY id DESC";
+                    $sql = "SELECT * FROM payment_list WHERE status = 'pending' ORDER BY id DESC";
                     $result = $connection->query($sql);
 
                     if ($result->num_rows > 0) {
@@ -79,12 +79,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>
                                 <td>{$count}</td>
-                                <td>{$row['name']}</td>
-                                <td>{$row['email']}</td>
-                                <td>{$row['price']}</td>
-                                <td>{$row['item']}</td>
+                                <td>{$row['account_id']}</td>
+                                <td>{$row['month_of']}</td>
+                                <td>{$row['amount']}</td>
                                 <td>{$row['status']}</td>
-                                <td>{$row['timestamp']}</td>
+                                <td>{$row['date_created']}</td>
+                                <td>{$row['date_updated']}</td>
                                 <td>
                                     <button class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#approveModal' 
                                         onclick='setApproveId({$row['id']})'>Approve</button>
