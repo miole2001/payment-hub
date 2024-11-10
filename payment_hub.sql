@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 29, 2024 at 01:06 PM
+-- Generation Time: Nov 10, 2024 at 06:33 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -141,6 +141,31 @@ INSERT INTO `payments` (`id`, `name`, `email`, `price`, `item`, `system_type`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `payment_list`
+--
+
+CREATE TABLE `payment_list` (
+  `id` int(30) NOT NULL,
+  `account_id` int(30) NOT NULL,
+  `month_of` varchar(10) NOT NULL,
+  `amount` float(12,2) NOT NULL DEFAULT 0.00,
+  `status` varchar(100) NOT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `payment_list`
+--
+
+INSERT INTO `payment_list` (`id`, `account_id`, `month_of`, `amount`, `status`, `date_created`, `date_updated`) VALUES
+(3, 1, '2022-04', 5000.00, 'pending', '2022-05-07 14:55:37', '2024-11-11 01:13:35'),
+(4, 1, '2022-05', 5000.00, 'approved', '2022-05-07 14:58:27', '2024-11-11 01:13:46'),
+(5, 2, '2022-05', 3500.00, 'pending', '2022-05-07 14:59:04', '2024-11-11 01:13:53');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `reservation`
 --
 
@@ -218,6 +243,13 @@ ALTER TABLE `payments`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `payment_list`
+--
+ALTER TABLE `payment_list`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `account_id` (`account_id`);
+
+--
 -- Indexes for table `reservation`
 --
 ALTER TABLE `reservation`
@@ -258,6 +290,12 @@ ALTER TABLE `logs`
 --
 ALTER TABLE `payments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `payment_list`
+--
+ALTER TABLE `payment_list`
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `reservation`
