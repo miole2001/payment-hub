@@ -12,38 +12,38 @@
         $row = mysqli_fetch_array($result);
         
         // user boat
-        if ($row["user_type"] == "user boat") {
-            $_SESSION['id'] = $row['id'];
-            $_SESSION["email"] = $email;
-            header("location: user/boat-user/payment-approved.php");
-        } 
-
-        //user dormitory
-        elseif ($row["user_type"] == "user dormitory"){
-            $_SESSION['id'] = $row['id'];
-            $_SESSION["email"] = $email;
-            header("location: user/dormitory-user/payment-approved.php");
-        }
-        
-        //admin payment
-        elseif ($row["user_type"] == "payment admin") {
-            $_SESSION['id'] = $row['id'];
-            $_SESSION["email"] = $email;
-            header("location: admin/payment-admin/payment-adminDashboard.php");
+        if ($row["user_type"] == "payment admin") {
+          $_SESSION['id'] = $row['id'];
+          $_SESSION["email"] = $email;
+          header("location: payment-admin/payment-adminDashboard.php");
         } 
 
         //admin boat
         elseif ($row["user_type"] == "boat admin") {
           $_SESSION['id'] = $row['id'];
           $_SESSION["email"] = $email;
-          header("location: admin/boat-admin/boat-adminDashboard.php");
+          header("location: boat-admin/payment-pending.php");
       } 
 
       //admin dormitory
       elseif ($row["user_type"] == "dormitory admin") {
         $_SESSION['id'] = $row['id'];
         $_SESSION["email"] = $email;
-        header("location: admin/dormitory-admin/dormitory-adminDashboard.php");
+        header("location: dormitory-admin/payment-pending.php");
+      } 
+
+      //admin student
+      elseif ($row["user_type"] == "student admin") {
+        $_SESSION['id'] = $row['id'];
+        $_SESSION["email"] = $email;
+        header("location: student-admin/payment-pending.php");
+      } 
+
+      //admin dormitory
+      elseif ($row["user_type"] == "bus admin") {
+        $_SESSION['id'] = $row['id'];
+        $_SESSION["email"] = $email;
+        header("location: bus-admin/payment-pending.php");
       } 
         
         else {
