@@ -50,8 +50,8 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="payment-pending.php">Pending</a>
-                                    <a class="nav-link" href="payment-approved.php">Approved</a>
+                                    <a class="nav-link" href="pending.php">Pending</a>
+                                    <a class="nav-link" href="approved.php">Approved</a>
                                 </nav>
                             </div>
 

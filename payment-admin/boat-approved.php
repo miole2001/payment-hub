@@ -3,35 +3,45 @@ include('payment-header.php');
 ?>
 <main>
     <div class="d-flex justify-content-center mt-4">
-        <h3>Boat Reservation Approved Payments</h3>
+        <h3>Boat Reservation Pending Payments</h3>
     </div>
     <div class="card mt-5">
         <div class="card-header">
-            Approved List
+            Pending List
         </div>
         <div class="card-body">
             <table id="datatablesSimple">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>Email</th>
+                        <th>Tourist</th>
+                        <th>Contact</th>
+                        <th>Address</th>
+                        <th>Image</th>
+                        <th>Boat Name</th>
+                        <th>Operation Name</th>
+                        <th>Destination</th>
+                        <th>Date</th>
+                        <th>Time</th>
                         <th>Price</th>
-                        <th>Item</th>
-                        <th>status</th>
-                        <th>Date Registered</th>
+                        <th>Status</th>
                         <th>Action(s)</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>Email</th>
+                        <th>Tourist</th>
+                        <th>Contact</th>
+                        <th>Address</th>
+                        <th>Image</th>
+                        <th>Boat Name</th>
+                        <th>Operation Name</th>
+                        <th>Destination</th>
+                        <th>Date</th>
+                        <th>Time</th>
                         <th>Price</th>
-                        <th>Item</th>
-                        <th>status</th>
-                        <th>Date Registered</th>
+                        <th>Status</th>
                         <th>Action(s)</th>
                     </tr>
                 </tfoot>
@@ -39,46 +49,71 @@ include('payment-header.php');
                     <?php
                     if (isset($_GET['delete_id'])) {
                         $delete_id = $_GET['delete_id'];
-                        $stmt = $connection->prepare("DELETE FROM payments WHERE id = ?");
+                        $stmt = $connection->prepare("DELETE FROM reservation WHERE r_id = ?");
                         $stmt->bind_param("i", $delete_id);
                         $result = $stmt->execute();
-
+                    
                         if ($result) {
                             echo "<script>alert('Delete Successful!'); window.location.href = 'boat-approved.php';</script>";
                         } else {
-                            echo "<script>alert('Delete Unsuccessful. There was an error deleting the account.'); window.location.href = 'boat-approved.php';</script>";
+                            echo "<script>alert('Delete Unsuccessful. Error: " . $stmt->error . "'); window.location.href = 'boat-approved.php';</script>";
                         }
                         $stmt->close();
-                    }
-                    $sql = "SELECT * FROM payments WHERE system_type = 'boat' AND status = 'approved' ORDER BY id DESC";
-                    $result = $connection->query($sql);
+                    }                    
 
-                    if ($result->num_rows > 0) {
+                    // Fetch reservation details
+                    $sql = "SELECT * FROM reservation r 
+                            INNER JOIN boats b ON b.b_id = r.b_id
+                            INNER JOIN tourist t ON t.tour_id = r.tour_id WHERE status = 'approved' AND system_type = 'boat'";
+                    
+                    $res = $connection->query($sql);
+
+                    if ($res) {
                         $count = 1;
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<tr>
-                                            <td>{$count}</td>
-                                            <td>{$row['name']}</td>
-                                            <td>{$row['email']}</td>
-                                            <td>{$row['price']}</td>
-                                            <td>{$row['item']}</td>
-                                            <td>{$row['status']}</td>
-                                            <td>{$row['timestamp']}</td>
-                                            <td>
-                                                <button class='btn btn-danger' onclick='confirmDelete(" . $row['id'] . ")'>Delete</button>
-                                            </td> 
-                                        </tr>";
+                        foreach ($res as $r) {
+                            $r_id = $r['r_id'];
+                            $tfn = $r['tour_fN'];
+                            $tmn = $r['tour_mN'];
+                            $tln = $r['tour_lN'];
+                            $tcontact = $r['tour_contact'];
+                            $taddress = $r['tour_address'];
+                            $img = $r['b_img'];
+                            $bn = $r['b_name'];
+                            $bon = $r['b_on'];
+                            $dstntn = $r['r_dstntn'];
+                            $bprice = $r['b_price'];
+                            $rdate = $r['r_date'];
+                            $rhr = $r['r_hr'];
+                            $rampm = $r['r_ampm'];
+                            $status = $r['status'];
+                            $oras = $rhr . ' ' . $rampm;
+
+                            echo "
+                                <tr>
+                                    <td>{$count}</td>
+                                    <td class='align-img'>{$tfn} {$tmn} {$tln}</td>
+                                    <td class='align-img'>{$tcontact}</td>
+                                    <td class='align-img'>{$taddress}</td>
+                                    <td class='align-img'><center><img src='{$img}' width='50' height='50'></center></td>
+                                    <td class='align-img'>{$bn}</td>
+                                    <td class='align-img'>{$bon}</td>
+                                    <td class='align-img'>{$dstntn}</td>
+                                    <td class='align-img'>{$rdate}</td>
+                                    <td class='align-img'>{$oras}</td>
+                                    <td class='align-img'>Php " . number_format($bprice, 2) . "</td>
+                                    <td class='align-img'>{$status}</td>
+                                    <td class='align-img'>
+                                        <button class='btn btn-danger' onclick='confirmDelete({$r_id})'>Delete</button>
+                                    </td>
+                                </tr>";
                             $count++;
                         }
                     } else {
-                        echo "<tr><td colspan='8' class='text-center'>No accounts found.</td></tr>";
+                        echo "<tr><td colspan='13' class='text-center'>No pending payments found.</td></tr>";
                     }
-
-                    $connection->close();
+                    
                     ?>
                 </tbody>
-
-
             </table>
         </div>
     </div>

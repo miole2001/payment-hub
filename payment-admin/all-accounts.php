@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>
                                 <td>{$count}</td>
-                                <td><img src='../../images/" . $row['image'] . "' alt='User Image' class='user-image' style='width: 100px; height: auto;'></td>
+                                <td><img src='../images/" . $row['image'] . "' alt='User Image' class='user-image' style='width: 100px; height: auto;'></td>
                                 <td>{$row['name']}</td>
                                 <td>{$row['email']}</td>
                                 <td>{$row['user_type']}</td>

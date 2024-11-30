@@ -31,11 +31,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
         <div class="card-body">
             <table id="datatablesSimple">
                 <thead>
-                    <tr>
+                <tr>
                         <th>#</th>
-                        <th>Boat Image</th>
+                        <th>Tourist</th>
+                        <th>Contact</th>
+                        <th>Address</th>
+                        <th>Image</th>
                         <th>Boat Name</th>
-                        <th>Boat Operation Name</th>
+                        <th>Operation Name</th>
                         <th>Destination</th>
                         <th>Date</th>
                         <th>Time</th>
@@ -47,9 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
                 <tfoot>
                     <tr>
                         <th>#</th>
-                        <th>Boat Image</th>
+                        <th>Tourist</th>
+                        <th>Contact</th>
+                        <th>Address</th>
+                        <th>Image</th>
                         <th>Boat Name</th>
-                        <th>Boat Operation Name</th>
+                        <th>Operation Name</th>
                         <th>Destination</th>
                         <th>Date</th>
                         <th>Time</th>
@@ -65,47 +71,68 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
                         $stmt = $connection->prepare("DELETE FROM reservation WHERE r_id = ?");
                         $stmt->bind_param("i", $delete_id);
                         $result = $stmt->execute();
-
+                    
                         if ($result) {
                             echo "<script>alert('Delete Successful!'); window.location.href = 'payment-pending.php';</script>";
                         } else {
-                            echo "<script>alert('Delete Unsuccessful. There was an error deleting the payment.'); window.location.href = 'payment-pending.php';</script>";
+                            echo "<script>alert('Delete Unsuccessful. Error: " . $stmt->error . "'); window.location.href = 'payment-pending.php';</script>";
                         }
                         $stmt->close();
-                    }
+                    }                    
 
+                    // Fetch reservation details
                     $sql = "SELECT * FROM reservation r 
                             INNER JOIN boats b ON b.b_id = r.b_id
-                            INNER JOIN tourist t ON t.tour_id = r.tour_id
-                            WHERE r.status = 'pending'";
-                    $result = $connection->query($sql);
+                            INNER JOIN tourist t ON t.tour_id = r.tour_id WHERE status = 'pending' AND system_type = 'boat'";
+                    
+                    $res = $connection->query($sql);
 
-                    if ($result->num_rows > 0) {
+                    if ($res) {
                         $count = 1;
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<tr>
-                                <td>{$count}</td>
-                                <td>{$row['b_img']}</td>
-                                <td>{$row['b_name']}</td>
-                                <td>{$row['b_on']}</td>
-                                <td>{$row['r_dstntn']}</td>
-                                <td>{$row['b_price']}</td>
-                                <td>{$row['r_date']}</td>
-                                <td>{$row['r_hr']} {$row['r_ampm']}</td>
-                                <td>{$row['status']}</td>
-                                <td>
-                                    <button class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#approveModal' 
-                                        onclick='setApproveId({$row['r_id']})'>Approve</button>
-                                    <button class='btn btn-danger' onclick='confirmDelete({$row['r_id']})'>Delete</button>
-                                </td> 
-                            </tr>";
+                        foreach ($res as $r) {
+                            $r_id = $r['r_id'];
+                            $tfn = $r['tour_fN'];
+                            $tmn = $r['tour_mN'];
+                            $tln = $r['tour_lN'];
+                            $tcontact = $r['tour_contact'];
+                            $taddress = $r['tour_address'];
+                            $img = $r['b_img'];
+                            $bn = $r['b_name'];
+                            $bon = $r['b_on'];
+                            $dstntn = $r['r_dstntn'];
+                            $bprice = $r['b_price'];
+                            $rdate = $r['r_date'];
+                            $rhr = $r['r_hr'];
+                            $rampm = $r['r_ampm'];
+                            $status = $r['status'];
+                            $oras = $rhr . ' ' . $rampm;
+
+                            echo "
+                                <tr>
+                                    <td>{$count}</td>
+                                    <td class='align-img'>{$tfn} {$tmn} {$tln}</td>
+                                    <td class='align-img'>{$tcontact}</td>
+                                    <td class='align-img'>{$taddress}</td>
+                                    <td class='align-img'><center><img src='{$img}' width='50' height='50'></center></td>
+                                    <td class='align-img'>{$bn}</td>
+                                    <td class='align-img'>{$bon}</td>
+                                    <td class='align-img'>{$dstntn}</td>
+                                    <td class='align-img'>{$rdate}</td>
+                                    <td class='align-img'>{$oras}</td>
+                                    <td class='align-img'>Php " . number_format($bprice, 2) . "</td>
+                                    <td class='align-img'>{$status}</td>
+                                    <td class='align-img'>
+                                        <button class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#approveModal' 
+                                            onclick='setApproveId({$r_id})'>Approve</button>
+                                        <button class='btn btn-danger' onclick='confirmDelete({$r_id})'>Delete</button>
+                                    </td>
+                                </tr>";
                             $count++;
                         }
                     } else {
-                        echo "<tr><td colspan='10' class='text-center'>No pending payments found.</td></tr>";
+                        echo "<tr><td colspan='13' class='text-center'>No pending payments found.</td></tr>";
                     }
-
-                    $connection->close();
+                    
                     ?>
                 </tbody>
             </table>

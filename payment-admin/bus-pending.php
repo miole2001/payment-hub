@@ -11,9 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
 
     // Execute the statement and check for errors
     if ($stmt->execute()) {
-        echo "<script>alert('Payment Approved!'); window.location.href = 'boat-pending.php';</script>";
+        echo "<script>alert('Payment Approved!'); window.location.href = 'bus-pending.php';</script>";
     } else {
-        echo "<script>alert('Approval Unsuccessful. Error: " . $stmt->error . "'); window.location.href = 'boat-pending.php';</script>";
+        echo "<script>alert('Approval Unsuccessful. Error: " . $stmt->error . "'); window.location.href = 'bus-pending.php';</script>";
     }
 
     $stmt->close();
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
 
 <main>
     <div class="d-flex justify-content-center mt-4">
-        <h3>Boat Reservation Pending Payments</h3>
+        <h3>Bus Reservation Pending Payments</h3>
     </div>
     <div class="card mt-5">
         <div class="card-header">
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
                         <th>Contact</th>
                         <th>Address</th>
                         <th>Image</th>
-                        <th>Boat Name</th>
+                        <th>Bus Name</th>
                         <th>Operation Name</th>
                         <th>Destination</th>
                         <th>Date</th>
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
                         <th>Contact</th>
                         <th>Address</th>
                         <th>Image</th>
-                        <th>Boat Name</th>
+                        <th>Bus Name</th>
                         <th>Operation Name</th>
                         <th>Destination</th>
                         <th>Date</th>
@@ -73,9 +73,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
                         $result = $stmt->execute();
                     
                         if ($result) {
-                            echo "<script>alert('Delete Successful!'); window.location.href = 'boat-pending.php';</script>";
+                            echo "<script>alert('Delete Successful!'); window.location.href = 'bus-pending.php';</script>";
                         } else {
-                            echo "<script>alert('Delete Unsuccessful. Error: " . $stmt->error . "'); window.location.href = 'boat-pending.php';</script>";
+                            echo "<script>alert('Delete Unsuccessful. Error: " . $stmt->error . "'); window.location.href = 'bus-pending.php';</script>";
                         }
                         $stmt->close();
                     }                    
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
                     // Fetch reservation details
                     $sql = "SELECT * FROM reservation r 
                             INNER JOIN boats b ON b.b_id = r.b_id
-                            INNER JOIN tourist t ON t.tour_id = r.tour_id WHERE status = 'pending' AND system_type = 'boat'";
+                            INNER JOIN tourist t ON t.tour_id = r.tour_id WHERE status = 'pending' AND system_type = 'bus'";
                     
                     $res = $connection->query($sql);
 
@@ -152,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
                 <p>Are you sure you want to approve this payment?</p>
             </div>
             <div class="modal-footer">
-                <form method="POST" action="boat-pending.php">
+                <form method="POST" action="bus-pending.php">
                     <input type="hidden" name="approve_id" id="approveId">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-primary">Approve</button>
@@ -165,7 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_id'])) {
 <script>
     function confirmDelete(id) {
         if (confirm('Are you sure you want to delete this entry?')) {
-            window.location.href = 'boat-pending.php?delete_id=' + id;
+            window.location.href = 'bus-pending.php?delete_id=' + id;
         }
     }
 

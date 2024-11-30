@@ -98,6 +98,18 @@
                                 </nav>
                             </div>
 
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#bus" aria-expanded="false" aria-controls="bus">
+                                <div class="sb-nav-link-icon"><i class="fas fa-money-bill-alt"></i></div>
+                                Bus Payments
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="bus" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="bus-pending.php">Pending</a>
+                                    <a class="nav-link" href="bus-approved.php">Approved</a>
+                                </nav>
+                            </div>
+
                             <!-- admin logs -->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#AdminLogs" aria-expanded="false" aria-controls="AdminLogs">
                                 <div class="sb-nav-link-icon"><i class="fas fa-money-bill-alt"></i></div>

@@ -43,7 +43,7 @@
       elseif ($row["user_type"] == "bus admin") {
         $_SESSION['id'] = $row['id'];
         $_SESSION["email"] = $email;
-        header("location: bus-admin/payment-pending.php");
+        header("location: bus-admin/pending.php");
       } 
         
         else {
